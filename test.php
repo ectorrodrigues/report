@@ -50,6 +50,7 @@
 
 
   // $cot = 0;
+    $conn = db();
   $x = 1;
   $last_fetch = '2021-01-01';
   foreach($conn->query("SELECT date FROM report WHERE collaborator = 'Ector'") as $row) {
