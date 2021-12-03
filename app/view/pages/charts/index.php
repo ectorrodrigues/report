@@ -3,9 +3,15 @@
 		<div class="col-12">
 
 
+			<loop>
+				{function->fetchdate->id}
+			</loop>
+
+
 
 			<canvas id="myChart" width="900" height="200"></canvas>
 			<script>
+			/*
 			const ctx = document.getElementById('myChart');
 			const myChart = new Chart(ctx, {
 			    type: 'line',
@@ -33,6 +39,7 @@
 			        }
 			    }
 			});
+			*/
 			</script>
 
 		</div>

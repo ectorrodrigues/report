@@ -36,6 +36,7 @@
 
 
   $conn = db();
+
   /*
   $x = 0;
   foreach($conn->query("SELECT date FROM report WHERE collaborator = 'Ector' GROUP BY CAST(date AS DATE) ") as $row) {
@@ -45,27 +46,25 @@
     echo $fetch.'<br>';
 	}
   echo $x;
-  */
+*/
 
+
+  // $cot = 0;
   $x = 1;
   $last_fetch = '2021-01-01';
   foreach($conn->query("SELECT date FROM report WHERE collaborator = 'Ector'") as $row) {
 		$fetch		= $row['date'];
-
-    if($fetch == $last_fetch){
+    if($fetch === $last_fetch){
       $x++;
-
     } else {
-      echo $last_fetch.'  --  '.$x.'<br>';
+      echo $last_fetch.'  --  '.$x.'  --  '.$cot.'<br>';
       $x = 1;
+      //$cot++;
     }
-
     $last_fetch = $fetch;
-
-
-
 	}
 
+  //echo $cot;
 
 
 ?>

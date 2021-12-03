@@ -666,4 +666,25 @@ function accesscount($str){
   $query->execute();
 } //endfunction
 
+function fetchdate($str){
+  $conn = db();
+  $dates = '';
+  $x = 1;
+  $last_fetch = '2021-01-01';
+  foreach($conn->query("SELECT date FROM charts WHERE collaborator = 'Ector'") as $row) {
+		$fetch		= $row['date'];
+    if($fetch === $last_fetch){
+      $x++;
+    } else {
+      $dates .= $last_fetch.'<br>';
+      $x = 1;
+    }
+    $last_fetch = $fetch;
+	}
+
+  $str = $dates;
+
+  return $str;
+}
+
 ?>
