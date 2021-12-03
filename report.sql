@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 02-Dez-2021 às 23:50
+-- Tempo de geração: 03-Dez-2021 às 01:01
 -- Versão do servidor: 5.7.31
 -- versão do PHP: 7.3.21
 
@@ -47,163 +47,11 @@ INSERT INTO `banners` (`id`, `title`, `img`, `link`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `cms`
+-- Estrutura da tabela `charts`
 --
 
-DROP TABLE IF EXISTS `cms`;
-CREATE TABLE IF NOT EXISTS `cms` (
-  `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `title` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Extraindo dados da tabela `cms`
---
-
-INSERT INTO `cms` (`id`, `title`) VALUES
-(1, 'menu'),
-(2, 'banners'),
-(3, 'items'),
-(4, 'report');
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `config`
---
-
-DROP TABLE IF EXISTS `config`;
-CREATE TABLE IF NOT EXISTS `config` (
-  `id` int(255) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `title` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `content` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Extraindo dados da tabela `config`
---
-
-INSERT INTO `config` (`id`, `title`, `content`) VALUES
-(1, 'Database Name', 'report'),
-(2, 'Logo', 'logo.svg'),
-(3, 'Site_Title', 'Title of your Site'),
-(4, 'Phone', '45 99999-9999'),
-(5, 'Email', 'contact@blackholeframe.com'),
-(6, 'Address', 'Lorem Ipsum St., New York'),
-(7, 'Auto_Update_AppModel', 'no'),
-(8, 'Auto_Update_AdminModel', 'no'),
-(9, 'Auto_Update_Helper_List', 'no'),
-(10, 'Auto_Update_Helper_Form', 'no'),
-(11, 'empty', '');
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `home`
---
-
-DROP TABLE IF EXISTS `home`;
-CREATE TABLE IF NOT EXISTS `home` (
-  `id` int(255) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `title` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `content` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Extraindo dados da tabela `home`
---
-
-INSERT INTO `home` (`id`, `title`, `content`) VALUES
-(1, 'title', 'Hello World.'),
-(2, 'description', 'Start to put here your content.<br />This file is: yourproject/app/view/pages/home/index.php');
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `input_types`
---
-
-DROP TABLE IF EXISTS `input_types`;
-CREATE TABLE IF NOT EXISTS `input_types` (
-  `id` int(255) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `title` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `content` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Extraindo dados da tabela `input_types`
---
-
-INSERT INTO `input_types` (`id`, `title`, `content`) VALUES
-(1, 'array_fields_hidden', 'id'),
-(2, 'array_fields_text', 'title'),
-(3, 'array_fields_number', 'sku'),
-(4, 'array_fields_select', 'status, id_category, id_subcategory, id_posts'),
-(5, 'array_fields_img', 'img, photo, icon'),
-(6, 'array_fields_textarea', 'text, description, addres'),
-(7, 'array_fields_date', 'date'),
-(8, 'array_fields_time', 'hour, time'),
-(9, 'array_fields_price', 'price'),
-(10, 'array_galleries', 'products, blog, news');
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `items`
---
-
-DROP TABLE IF EXISTS `items`;
-CREATE TABLE IF NOT EXISTS `items` (
-  `id` int(255) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `title` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `img` varchar(300) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `description` longtext COLLATE utf8_unicode_ci,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Extraindo dados da tabela `items`
---
-
-INSERT INTO `items` (`id`, `title`, `img`, `description`) VALUES
-(1, 'Item 01', 'item-01.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et augue odio. Sed nec justo quam. Nam congue dignissim congue. Proin eros urna, cursus sit amet sem non, ultricies ultricies dolor. Nullam nec mauris nisi. Pellentesque a mauris eget odio commodo rutrum. Mauris scelerisque enim non risus auctor consequat vitae vehicula orci. In quis nibh ante. Donec massa purus, congue eget nisl finibus, luctus laoreet leo. Aliquam elementum felis nec pellentesque maximus. Donec id nisl at mauris varius bibendum sit amet eu urna.'),
-(2, 'Item 02', 'item-02.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et augue odio. Sed nec justo quam. Nam congue dignissim congue. Proin eros urna, cursus sit amet sem non, ultricies ultricies dolor. Nullam nec mauris nisi. Pellentesque a mauris eget odio commodo rutrum. Mauris scelerisque enim non risus auctor consequat vitae vehicula orci. In quis nibh ante. Donec massa purus, congue eget nisl finibus, luctus laoreet leo. Aliquam elementum felis nec pellentesque maximus. Donec id nisl at mauris varius bibendum sit amet eu urna.');
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `menu`
---
-
-DROP TABLE IF EXISTS `menu`;
-CREATE TABLE IF NOT EXISTS `menu` (
-  `id` int(255) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `title` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `link` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Extraindo dados da tabela `menu`
---
-
-INSERT INTO `menu` (`id`, `title`, `link`) VALUES
-(1, 'home', 'home'),
-(2, 'items', 'items'),
-(3, 'report', 'report');
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `report`
---
-
-DROP TABLE IF EXISTS `report`;
-CREATE TABLE IF NOT EXISTS `report` (
+DROP TABLE IF EXISTS `charts`;
+CREATE TABLE IF NOT EXISTS `charts` (
   `id` int(255) NOT NULL AUTO_INCREMENT,
   `date` date NOT NULL,
   `client` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -213,10 +61,10 @@ CREATE TABLE IF NOT EXISTS `report` (
 ) ENGINE=MyISAM AUTO_INCREMENT=4368 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Extraindo dados da tabela `report`
+-- Extraindo dados da tabela `charts`
 --
 
-INSERT INTO `report` (`id`, `date`, `client`, `collaborator`, `status`) VALUES
+INSERT INTO `charts` (`id`, `date`, `client`, `collaborator`, `status`) VALUES
 (11, '2021-01-04', 'Placa Mídia ', 'Tati', 'Concluído'),
 (12, '2021-01-04', 'Bonaldo Carrocerias', 'Tati', 'Concluído'),
 (13, '2021-01-04', 'Matriagro / Sanplex', 'Aline', 'Concluído'),
@@ -1082,7 +930,7 @@ INSERT INTO `report` (`id`, `date`, `client`, `collaborator`, `status`) VALUES
 (873, '2021-04-01', NULL, 'Aline', 'Concluído'),
 (874, '2021-03-31', 'Sicredi Ouro Verde MT', 'Luan', 'Concluído'),
 (875, '2021-03-31', 'Sicredi Ouro Verde MT', 'Luan', 'Concluído');
-INSERT INTO `report` (`id`, `date`, `client`, `collaborator`, `status`) VALUES
+INSERT INTO `charts` (`id`, `date`, `client`, `collaborator`, `status`) VALUES
 (876, '2021-03-31', 'Sicredi Ouro Verde MT', 'Luan', 'Concluído'),
 (877, '2021-03-31', 'Sicredi Ouro Verde MT', 'Luan', 'Concluído'),
 (878, '2021-03-31', 'Sicredi Ouro Verde MT', 'Luan', 'Concluído'),
@@ -1936,7 +1784,7 @@ INSERT INTO `report` (`id`, `date`, `client`, `collaborator`, `status`) VALUES
 (1726, '2021-06-14', 'BZS', 'Aline', 'Concluído'),
 (1727, '2021-06-14', 'Sicredi Ouro Verde MT', 'Luan', 'Concluído'),
 (1728, '2021-06-14', 'Risso e Fortes', 'Maria Luiza', 'Concluído');
-INSERT INTO `report` (`id`, `date`, `client`, `collaborator`, `status`) VALUES
+INSERT INTO `charts` (`id`, `date`, `client`, `collaborator`, `status`) VALUES
 (1729, '2021-06-14', 'Risso e Fortes', 'Maria Luiza', 'Concluído'),
 (1730, '2021-06-15', 'Sicredi Ouro Verde MT', 'Luan', 'Concluído'),
 (1731, '2021-06-15', 'Sicredi Ouro Verde MT', 'Luan', 'Concluído'),
@@ -2766,7 +2614,7 @@ INSERT INTO `report` (`id`, `date`, `client`, `collaborator`, `status`) VALUES
 (2555, '2021-08-17', 'Bolson Frigorifico', 'Tati', 'Concluído'),
 (2556, '2021-08-17', 'Sicredi Ouro Verde MT', 'Thiago ', 'Concluído'),
 (2557, '2021-08-18', 'VELOSO ENGENHARIA ', 'Luan', 'Concluído');
-INSERT INTO `report` (`id`, `date`, `client`, `collaborator`, `status`) VALUES
+INSERT INTO `charts` (`id`, `date`, `client`, `collaborator`, `status`) VALUES
 (2558, '2021-08-18', 'Sicredi Ouro Verde MT', 'Luan', 'Concluído'),
 (2559, '2021-08-18', 'Centry', 'Filipe', 'Concluído'),
 (2560, '2021-08-20', NULL, 'bispo', 'Concluído'),
@@ -3578,7 +3426,7 @@ INSERT INTO `report` (`id`, `date`, `client`, `collaborator`, `status`) VALUES
 (3366, '2021-10-04', 'MOVA ', 'Aline', 'Concluído'),
 (3367, '2021-10-04', 'Gafuri Materiais de Construção ', 'Luan', 'Concluído'),
 (3368, '2021-10-04', 'Omega Sat', 'Luan', 'Concluído');
-INSERT INTO `report` (`id`, `date`, `client`, `collaborator`, `status`) VALUES
+INSERT INTO `charts` (`id`, `date`, `client`, `collaborator`, `status`) VALUES
 (3369, '2021-10-04', 'VELOSO ENGENHARIA ', 'Tati', 'Concluído'),
 (3370, '2021-10-04', 'Sicredi Ouro Verde MT', 'Luan', 'Concluído'),
 (3371, '2021-10-04', 'Sicredi Ouro Verde MT', 'Luan', 'Concluído'),
@@ -4383,7 +4231,7 @@ INSERT INTO `report` (`id`, `date`, `client`, `collaborator`, `status`) VALUES
 (4170, '2021-11-24', 'Vertys Group', 'Filipe', 'Concluído'),
 (4171, '2021-11-24', 'Garagem Concept Store', 'Filipe', 'Concluído'),
 (4172, '2021-11-25', 'Gafuri Materiais de Construção ', 'Luan', 'Concluído');
-INSERT INTO `report` (`id`, `date`, `client`, `collaborator`, `status`) VALUES
+INSERT INTO `charts` (`id`, `date`, `client`, `collaborator`, `status`) VALUES
 (4173, '2021-11-25', 'Difere', 'Tati', 'Concluído'),
 (4174, '2021-11-12', NULL, 'Aline', 'Concluído'),
 (4175, '2021-11-25', 'PAULO SERGIO FARIAS DE ALMEIDA', 'Filipe', 'Concluído'),
@@ -4583,6 +4431,158 @@ INSERT INTO `report` (`id`, `date`, `client`, `collaborator`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `cms`
+--
+
+DROP TABLE IF EXISTS `cms`;
+CREATE TABLE IF NOT EXISTS `cms` (
+  `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Extraindo dados da tabela `cms`
+--
+
+INSERT INTO `cms` (`id`, `title`) VALUES
+(1, 'menu'),
+(2, 'banners'),
+(3, 'items'),
+(4, 'charts');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `config`
+--
+
+DROP TABLE IF EXISTS `config`;
+CREATE TABLE IF NOT EXISTS `config` (
+  `id` int(255) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `content` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Extraindo dados da tabela `config`
+--
+
+INSERT INTO `config` (`id`, `title`, `content`) VALUES
+(1, 'Database Name', 'report'),
+(2, 'Logo', 'logo.svg'),
+(3, 'Site_Title', 'Title of your Site'),
+(4, 'Phone', '45 99999-9999'),
+(5, 'Email', 'contact@blackholeframe.com'),
+(6, 'Address', 'Lorem Ipsum St., New York'),
+(7, 'Auto_Update_AppModel', 'no'),
+(8, 'Auto_Update_AdminModel', 'no'),
+(9, 'Auto_Update_Helper_List', 'no'),
+(10, 'Auto_Update_Helper_Form', 'no'),
+(11, 'empty', '');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `home`
+--
+
+DROP TABLE IF EXISTS `home`;
+CREATE TABLE IF NOT EXISTS `home` (
+  `id` int(255) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `content` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Extraindo dados da tabela `home`
+--
+
+INSERT INTO `home` (`id`, `title`, `content`) VALUES
+(1, 'title', 'Hello World.'),
+(2, 'description', 'Start to put here your content.<br />This file is: yourproject/app/view/pages/home/index.php');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `input_types`
+--
+
+DROP TABLE IF EXISTS `input_types`;
+CREATE TABLE IF NOT EXISTS `input_types` (
+  `id` int(255) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `content` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Extraindo dados da tabela `input_types`
+--
+
+INSERT INTO `input_types` (`id`, `title`, `content`) VALUES
+(1, 'array_fields_hidden', 'id'),
+(2, 'array_fields_text', 'title'),
+(3, 'array_fields_number', 'sku'),
+(4, 'array_fields_select', 'status, id_category, id_subcategory, id_posts'),
+(5, 'array_fields_img', 'img, photo, icon'),
+(6, 'array_fields_textarea', 'text, description, addres'),
+(7, 'array_fields_date', 'date'),
+(8, 'array_fields_time', 'hour, time'),
+(9, 'array_fields_price', 'price'),
+(10, 'array_galleries', 'products, blog, news');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `items`
+--
+
+DROP TABLE IF EXISTS `items`;
+CREATE TABLE IF NOT EXISTS `items` (
+  `id` int(255) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `img` varchar(300) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description` longtext COLLATE utf8_unicode_ci,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Extraindo dados da tabela `items`
+--
+
+INSERT INTO `items` (`id`, `title`, `img`, `description`) VALUES
+(1, 'Item 01', 'item-01.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et augue odio. Sed nec justo quam. Nam congue dignissim congue. Proin eros urna, cursus sit amet sem non, ultricies ultricies dolor. Nullam nec mauris nisi. Pellentesque a mauris eget odio commodo rutrum. Mauris scelerisque enim non risus auctor consequat vitae vehicula orci. In quis nibh ante. Donec massa purus, congue eget nisl finibus, luctus laoreet leo. Aliquam elementum felis nec pellentesque maximus. Donec id nisl at mauris varius bibendum sit amet eu urna.'),
+(2, 'Item 02', 'item-02.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et augue odio. Sed nec justo quam. Nam congue dignissim congue. Proin eros urna, cursus sit amet sem non, ultricies ultricies dolor. Nullam nec mauris nisi. Pellentesque a mauris eget odio commodo rutrum. Mauris scelerisque enim non risus auctor consequat vitae vehicula orci. In quis nibh ante. Donec massa purus, congue eget nisl finibus, luctus laoreet leo. Aliquam elementum felis nec pellentesque maximus. Donec id nisl at mauris varius bibendum sit amet eu urna.');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `menu`
+--
+
+DROP TABLE IF EXISTS `menu`;
+CREATE TABLE IF NOT EXISTS `menu` (
+  `id` int(255) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `link` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Extraindo dados da tabela `menu`
+--
+
+INSERT INTO `menu` (`id`, `title`, `link`) VALUES
+(1, 'home', 'home'),
+(2, 'items', 'items'),
+(3, 'charts', 'charts');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `update_time_control`
 --
 
@@ -4591,7 +4591,7 @@ CREATE TABLE IF NOT EXISTS `update_time_control` (
   `id` int(255) UNSIGNED NOT NULL AUTO_INCREMENT,
   `time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Extraindo dados da tabela `update_time_control`
@@ -4599,7 +4599,8 @@ CREATE TABLE IF NOT EXISTS `update_time_control` (
 
 INSERT INTO `update_time_control` (`id`, `time`) VALUES
 (1, '2021-12-02 22:46:10'),
-(2, '2021-12-02 23:46:35');
+(2, '2021-12-02 23:46:35'),
+(3, '2021-12-03 00:52:47');
 
 -- --------------------------------------------------------
 
