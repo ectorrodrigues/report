@@ -4,7 +4,47 @@
 
 
 
+			<?php
 
+				$conn = db();
+				$result = '';
+				$x = 1;
+				$last_fetch = '2021-01-04';
+
+
+
+				foreach($conn->query("SELECT date, collaborator, id FROM charts ORDER BY date ASC") as $row) {
+
+					$fetch	= $row['date'];
+					$collaborator	= $row['collaborator'];
+					$id	= $row['id'];
+
+					//echo $fetch.' --- '.$collaborator.' ---- '.$id.'<br>';
+
+
+					if($fetch == $last_fetch){
+						if($collaborator == 'Ector'){
+							$x++;
+						} 
+					} else {
+
+						$result .= "'".$last_fetch."' -- ".$x.", <br>";
+						$x = 0;
+
+					}
+
+					if($fetch > $last_fetch AND $collaborator == 'Ector'){
+						$x = 1;
+					} elseif($fetch < $last_fetch AND $collaborator == 'Ector' AND $x < 1) {
+						$x = 1;
+					}
+
+					$last_fetch = $fetch;
+
+				}
+					$result = rtrim($result, ", ");
+					echo $result;
+				?>
 
 
 

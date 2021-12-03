@@ -8,7 +8,7 @@
 			$servername	= 'localhost';
 			$dbname		= 'report';
 			$username	= 'root';
-			$password	= '';
+			$password	= 'root';
 			$port = 3306;
 		} else {
 			$servername	= 'localhost';
