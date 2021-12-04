@@ -7,11 +7,13 @@
 			<?php
 
 				$conn = db();
+
+				/*
 				$result = '';
 				$x = 1;
-				$last_fetch = '2021-01-04';
+				$last_fetch = '2021-01-01';
 
-
+				$datasarr = array();
 
 				foreach($conn->query("SELECT date, collaborator, id FROM charts ORDER BY date ASC") as $row) {
 
@@ -19,31 +21,59 @@
 					$collaborator	= $row['collaborator'];
 					$id	= $row['id'];
 
-					//echo $fetch.' --- '.$collaborator.' ---- '.$id.'<br>';
-
-
 					if($fetch == $last_fetch){
-						if($collaborator == 'Ector'){
-							$x++;
-						} 
 					} else {
-
-						$result .= "'".$last_fetch."' -- ".$x.", <br>";
-						$x = 0;
-
-					}
-
-					if($fetch > $last_fetch AND $collaborator == 'Ector'){
-						$x = 1;
-					} elseif($fetch < $last_fetch AND $collaborator == 'Ector' AND $x < 1) {
-						$x = 1;
+						array_push($datasarr, "$last_fetch");
 					}
 
 					$last_fetch = $fetch;
 
 				}
-					$result = rtrim($result, ", ");
-					echo $result;
+				print_r($datasarr);
+				*/
+
+
+				$result = '';
+				$x = 0;
+				$last_fetch = '2021-01-01';
+				$last_collaborator = 'Ector';
+
+				$datasarr = array();
+
+				foreach($conn->query("SELECT date, collaborator, id FROM charts ORDER BY date ASC") as $row) {
+
+					$fetch	= $row['date'];
+					$collaborator	= $row['collaborator'];
+					$id	= $row['id'];
+
+					if($fetch == $last_fetch){
+
+						if($collaborator == 'Ector'){
+								$x++;
+						}
+
+
+					} else {
+
+						if($fetch < $last_fetch){
+							$x = 1;
+
+						}
+
+						array_push($datasarr, "$last_fetch -- $x<br>");
+						$x = 0;
+
+					}
+
+					$last_fetch = $fetch;
+					$last_collaborator = $collaborator;
+
+				}
+				print_r($datasarr);
+
+
+
+
 				?>
 
 
