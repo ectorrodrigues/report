@@ -6,11 +6,16 @@
 
 			<?php
 				$conn = db();
+
+				// DATAS
 				$datas = '';
 				$x = 0;
-				$last_fetch = '2021-01-01';
+
+				$period_date = '2021-01-01';
+				$last_fetch = $period_date;
+				$period = "'$period_date'";
 				$last_collaborator = 'jl';
-				foreach($conn->query("SELECT date, collaborator, id FROM charts ORDER BY date ASC") as $row) {
+				foreach($conn->query("SELECT date, collaborator, id FROM charts WHERE date > $period ORDER BY date ASC") as $row) {
 					$fetch	= $row['date'];
 					$collaborator	= $row['collaborator'];
 					$id	= $row['id'];
@@ -32,10 +37,9 @@
 					$last_collaborator = $collaborator;
 				}
 				$datas = rtrim($datas, ", ");
-			?>
 
-			<?php
 
+				// JOBS
 				$collaborators = array('Ector', 'Tati', 'Luan', 'Filipe' );
 				$colors = array('rgba(255, 0, 0, 1)', 'rgba(0, 0, 200, 1)', 'rgba(0, 200, 0, 1)', 'rgba(0, 0, 0, 1)');
 
@@ -51,10 +55,9 @@
 							data: [";
 
 					$x = 0;
-					$last_fetch = '2021-01-01';
 					$last_collaborator = 'jl';
 
-					foreach($conn->query("SELECT date, collaborator, id FROM charts ORDER BY date ASC") as $row) {
+					foreach($conn->query("SELECT date, collaborator, id FROM charts WHERE date > $period ORDER BY date ASC") as $row) {
 						$fetch	= $row['date'];
 						$collaborator	= $row['collaborator'];
 						$id	= $row['id'];
@@ -90,7 +93,6 @@
 				}
 
 				$result = rtrim($result, ",");
-				echo $result;
 			?>
 
 
