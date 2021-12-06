@@ -36,7 +36,7 @@
 				$result = '';
 				$x = 0;
 				$last_fetch = '2021-01-01';
-				$last_collaborator = 'Ector';
+				$last_collaborator = 'jl';
 
 				$datasarr = array();
 
@@ -50,23 +50,27 @@
 
 						if($collaborator == 'Ector'){
 								$x++;
+						} elseif($last_collaborator == 'Ector' AND $x < 1){
+								$x++;
 						}
-
 
 					} else {
 
-						if($fetch < $last_fetch){
-							$x = 1;
-
-						}
 
 						array_push($datasarr, "$last_fetch -- $x<br>");
-						$x = 0;
+
+						if($collaborator == 'Ector'){
+							$x = 1;
+						} else {
+							$x = 0;
+						}
+
 
 					}
 
 					$last_fetch = $fetch;
 					$last_collaborator = $collaborator;
+
 
 				}
 				print_r($datasarr);
