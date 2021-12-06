@@ -5,80 +5,93 @@
 
 
 			<?php
-
 				$conn = db();
-
-				/*
-				$result = '';
-				$x = 1;
-				$last_fetch = '2021-01-01';
-
-				$datasarr = array();
-
-				foreach($conn->query("SELECT date, collaborator, id FROM charts ORDER BY date ASC") as $row) {
-
-					$fetch	= $row['date'];
-					$collaborator	= $row['collaborator'];
-					$id	= $row['id'];
-
-					if($fetch == $last_fetch){
-					} else {
-						array_push($datasarr, "$last_fetch");
-					}
-
-					$last_fetch = $fetch;
-
-				}
-				print_r($datasarr);
-				*/
-
-
-				$result = '';
+				$datas = '';
 				$x = 0;
 				$last_fetch = '2021-01-01';
 				$last_collaborator = 'jl';
-
-				$datasarr = array();
-
 				foreach($conn->query("SELECT date, collaborator, id FROM charts ORDER BY date ASC") as $row) {
-
 					$fetch	= $row['date'];
 					$collaborator	= $row['collaborator'];
 					$id	= $row['id'];
-
 					if($fetch == $last_fetch){
-
 						if($collaborator == 'Ector'){
 								$x++;
 						} elseif($last_collaborator == 'Ector' AND $x < 1){
 								$x++;
 						}
-
 					} else {
-
-
-						array_push($datasarr, "$last_fetch -- $x<br>");
-
+						$datas .= "'$last_fetch' , ";
 						if($collaborator == 'Ector'){
 							$x = 1;
 						} else {
 							$x = 0;
 						}
-
-
 					}
-
 					$last_fetch = $fetch;
 					$last_collaborator = $collaborator;
+				}
+				$datas = rtrim($datas, ", ");
+			?>
 
+			<?php
+
+				$collaborators = array('Ector', 'Tati', 'Luan', 'Filipe' );
+				$colors = array('rgba(255, 0, 0, 1)', 'rgba(0, 0, 200, 1)', 'rgba(0, 200, 0, 1)', 'rgba(0, 0, 0, 1)');
+
+				$conn = db();
+
+				$result = '';
+				$colorscount = 0;
+				foreach ($collaborators as $collname) {
+
+					$result = $result."
+					{
+							label: '$collname',
+							data: [";
+
+					$x = 0;
+					$last_fetch = '2021-01-01';
+					$last_collaborator = 'jl';
+
+					foreach($conn->query("SELECT date, collaborator, id FROM charts ORDER BY date ASC") as $row) {
+						$fetch	= $row['date'];
+						$collaborator	= $row['collaborator'];
+						$id	= $row['id'];
+						if($fetch == $last_fetch){
+							if($collaborator == $collname){
+									$x++;
+							} elseif($last_collaborator == $collname AND $x < 1){
+									$x++;
+							}
+						} else {
+							$result .= "'$x' , ";
+							if($collaborator == $collname){
+								$x = 1;
+							} else {
+								$x = 0;
+							}
+						}
+						$last_fetch = $fetch;
+						$last_collaborator = $collaborator;
+					}
+					//$result = rtrim($result, ", ");
+
+
+					$result = "$result],
+							borderColor: [
+									'$colors[$colorscount]'
+							],
+							borderWidth: 1
+					},";
+
+					$colorscount++;
 
 				}
-				print_r($datasarr);
 
-
-
-
-				?>
+				$result = rtrim($result, ",");
+				echo $result;
+			?>
 
 
 
@@ -88,40 +101,9 @@
 			const myChart = new Chart(ctx, {
 			    type: 'line',
 			    data: {
-			        labels: [<?php	$conn = db(); $result = ''; $x = 1; $last_fetch = '2021-01-01';  foreach($conn->query("SELECT date FROM charts WHERE collaborator = 'Ector'") as $row) { $fetch	= $row['date'];  if($fetch == $last_fetch){ $x++; } else { $result .= "'".$last_fetch."', ";  $x = 1; } $last_fetch = $fetch; } $result = rtrim($result, ", "); echo $result; ?>],
-			        datasets: [{
-			            label: '# of Votes',
-			            data: [<?php	$conn = db(); $result = ''; $x = 1; $last_fetch = '2021-01-01';  foreach($conn->query("SELECT date FROM charts WHERE collaborator = 'Ector'") as $row) { $fetch	= $row['date'];  if($fetch == $last_fetch){ $x++; } else { $result .= "'".$x."', ";  $x = 1; } $last_fetch = $fetch; } $result = rtrim($result, ", "); echo $result; ?>],
-			            borderColor: [
-											<?php	$conn = db(); $result = ''; $x = 1; $last_fetch = '2021-01-01';  foreach($conn->query("SELECT date FROM charts WHERE collaborator = 'Ector'") as $row) { $fetch	= $row['date'];  if($fetch == $last_fetch){ $x++; } else { $result .= "'rgba(255, 0, 0, 1)', ";  $x = 1; } $last_fetch = $fetch; } $result = rtrim($result, ", "); echo $result; ?>
-			            ],
-			            borderWidth: 1
-			        },
-							{
-								label: '# of Votes',
-								data: [<?php	$conn = db(); $result = ''; $x = 1; $last_fetch = '2021-01-01';  foreach($conn->query("SELECT date FROM charts WHERE collaborator = 'Tati'") as $row) { $fetch	= $row['date'];  if($fetch == $last_fetch){ $x++; } else { $result .= "'".$x."', ";  $x = 1; } $last_fetch = $fetch; } $result = rtrim($result, ", "); echo $result; ?>],
-								borderColor: [
-										<?php	$conn = db(); $result = ''; $x = 1; $last_fetch = '2021-01-01';  foreach($conn->query("SELECT date FROM charts WHERE collaborator = 'Tati'") as $row) { $fetch	= $row['date'];  if($fetch == $last_fetch){ $x++; } else { $result .= "'rgba(0, 0, 200, 1)', ";  $x = 1; } $last_fetch = $fetch; } $result = rtrim($result, ", "); echo $result; ?>
-								],
-								borderWidth: 1
-						},
-						{
-							label: '# of Votes',
-							data: [<?php	$conn = db(); $result = ''; $x = 1; $last_fetch = '2021-03-28';  foreach($conn->query("SELECT date FROM charts WHERE collaborator = 'Filipe'") as $row) { $fetch	= $row['date'];  if($fetch == $last_fetch){ $x++; } else { $result .= "'".$x."', ";  $x = 1; } $last_fetch = $fetch; } $result = rtrim($result, ", "); echo $result; ?>],
-							borderColor: [
-									<?php	$conn = db(); $result = ''; $x = 1; $last_fetch = '2021-03-28';  foreach($conn->query("SELECT date FROM charts WHERE collaborator = 'Filipe'") as $row) { $fetch	= $row['date'];  if($fetch == $last_fetch){ $x++; } else { $result .= "'rgba(0, 200, 0, 1)', ";  $x = 1; } $last_fetch = $fetch; } $result = rtrim($result, ", "); echo $result; ?>
-							],
-							borderWidth: 1
-					},
-					{
-						label: '# of Votes',
-						data: [<?php	$conn = db(); $result = ''; $x = 1; $last_fetch = '2021-01-01';  foreach($conn->query("SELECT date FROM charts WHERE collaborator = 'Luan'") as $row) { $fetch	= $row['date'];  if($fetch == $last_fetch){ $x++; } else { $result .= "'".$x."', ";  $x = 1; } $last_fetch = $fetch; } $result = rtrim($result, ", "); echo $result; ?>],
-						borderColor: [
-								<?php	$conn = db(); $result = ''; $x = 1; $last_fetch = '2021-01-01';  foreach($conn->query("SELECT date FROM charts WHERE collaborator = 'Luan'") as $row) { $fetch	= $row['date'];  if($fetch == $last_fetch){ $x++; } else { $result .= "'rgba(50, 50, 50, 1)', ";  $x = 1; } $last_fetch = $fetch; } $result = rtrim($result, ", "); echo $result; ?>
-						],
-						borderWidth: 1
-				}]
-			    },
+			        labels: [<?=$datas?>],
+			        datasets: [<?=$result?>
+							]},
 			    options: {
 			        scales: {
 			            y: {
