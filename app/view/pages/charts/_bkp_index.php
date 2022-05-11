@@ -126,54 +126,6 @@
 
 				}
 
-
-
-				// TOTAL SUM
-
-				$last_fetch = $startperiod;
-				$period = "'$period_date'";
-
-				$result = $result."
-				{
-						label: 'Tudo',
-						data: [";
-
-				$x = 0;
-				$last_collaborator = 'jl';
-
-				foreach($conn->query("SELECT date, collaborator, id FROM charts WHERE date > $period ORDER BY date ASC") as $row) {
-					$fetch	= $row['date'];
-					$collaborator	= $row['collaborator'];
-					$id	= $row['id'];
-
-					if($fetch == $last_fetch){
-
-						foreach ($collaborators as $collabs) {
-							if($collaborator == $collabs ){
-								$x++;
-							}
-						}
-
-
-					} else {
-						$result .= "'$x' , ";
-						$x = 1;
-					}
-					$last_fetch = $fetch;
-				}
-				//$result = rtrim($result, ", ");
-
-
-				$result = "$result],
-						borderColor: [
-								'rgba(128, 128, 128, 1)'
-						],
-						borderWidth: 1
-				},";
-
-
-
-
 				$result = rtrim($result, ",");
 			?>
 
