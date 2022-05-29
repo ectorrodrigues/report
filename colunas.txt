@@ -1,0 +1,26 @@
+Array ( 
+[0] => Início 
+[1] => Prazo 
+[2] => Criado em 
+[3] => Concluído em 
+[4] => Realizado/Estimado 
+[5] => Dias em Atraso 
+[6] => Dias de Atraso 
+[7] => Job 
+[8] => Cliente 
+[9] => Título 
+[10] => Peça 
+[11] => Responsável 
+[12] => Alteração 
+[13] => Situação 
+[14] => Documento Relacionado 
+[15] => Empresa 
+);
+
+
+Array ( 
+[1] => Prazo 
+[8] => Cliente 
+[11] => Responsável 
+[13] => Situação 
+);

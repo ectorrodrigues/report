@@ -36,8 +36,9 @@
     <link rel="icon"  href="<?=FILES_DIR ?>favicon.ico" type="image/x-icon">
     -->
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdnjs.com/libraries/Chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-trendline"></script>
 
     <link rel="canonical" href="https://localhost/report">
 

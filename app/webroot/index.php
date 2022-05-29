@@ -55,7 +55,7 @@
 			}
 		}
 
-		construct_page($pagetop, 'footer.php');
+		//construct_page($pagetop, 'footer.php');
 	?>
 
 </body>
